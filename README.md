@@ -1,12 +1,12 @@
 ---
 title: Chat With Llama 2 70b
-emoji: 📊
-colorFrom: gray
-colorTo: gray
+emoji: 🦙
+colorFrom: indigo
+colorTo: red
 sdk: gradio
 sdk_version: 3.44.3
 app_file: app.py
-pinned: false
+pinned: true
 license: mit
 ---
 
