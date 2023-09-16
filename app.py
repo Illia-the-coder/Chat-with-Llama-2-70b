@@ -1,18 +1,26 @@
-import streamlit as st
+import gradio as gr
 from gradio_client import Client
 
-# Constants
-TITLE = "Llama2 70B Chatbot"
-DESCRIPTION = """
-This Space demonstrates model [Llama-2-70b-chat-hf](https://huggingface.co/meta-llama/Llama-2-70b-chat-hf) by Meta, 
-a Llama 2 model with 70B parameters fine-tuned for chat instructions. 
-"""
-
-# Initialize client
 client = Client("https://ysharma-explore-llamav2-with-tgi.hf.space/")
 
-# Prediction function
-def predict(message, system_prompt="", temperature=0.9, max_new_tokens=4096):
+
+
+title = "Llama2 70B Chatbot"
+description = """
+This Space demonstrates model [Llama-2-70b-chat-hf](https://huggingface.co/meta-llama/Llama-2-70b-chat-hf) by Meta, a Llama 2 model with 70B parameters fine-tuned for chat instructions. 
+"""
+css = """.toast-wrap { display: none !important } """
+examples=[
+    ['Hello there! How are you doing?'],
+    ['Can you explain to me briefly what is Python programming language?'],
+    ['Explain the plot of Cinderella in a sentence.'],
+    ['How many hours does it take a man to eat a Helicopter?'],
+    ["Write a 100-word article on 'Benefits of Open-Source in AI research'"],
+    ]
+
+
+# Stream text
+def predict(message, chatbot, system_prompt="", temperature=0.9, max_new_tokens=4096):
     return client.predict(
 			message,	# str in 'Message' Textbox component
             system_prompt,	# str in 'Optional system prompt' Textbox component
@@ -22,18 +30,35 @@ def predict(message, system_prompt="", temperature=0.9, max_new_tokens=4096):
 			1,	# int | float (numeric value between 1.0 and 2.0)
 			api_name="/chat"
     )
+        
 
-# Streamlit UI
-st.title(TITLE)
-st.write(DESCRIPTION)
+additional_inputs=[
+    gr.Textbox("", label="Optional system prompt"),
+    gr.Slider(
+        label="Temperature",
+        value=0.9,
+        minimum=0.0,
+        maximum=1.0,
+        step=0.05,
+        interactive=True,
+        info="Higher values produce more diverse outputs",
+    ),
+    gr.Slider(
+        label="Max new tokens",
+        value=4096,
+        minimum=0,
+        maximum=4096,
+        step=64,
+        interactive=True,
+        info="The maximum numbers of new tokens",
+    )
+]
 
-# Input fields
-message = st.text_area("Enter your message:", "")
-system_prompt = st.text_area("Optional system prompt:", "")
-temperature = st.slider("Temperature", min_value=0.0, max_value=1.0, value=0.9, step=0.05)
-max_new_tokens = st.slider("Max new tokens", min_value=0, max_value=4096, value=4096, step=64)
 
-if st.button("Predict"):
-    response = predict(message, system_prompt, temperature, max_new_tokens)
-    st.write("Response:", response)
 
+# Gradio Demo 
+with gr.Blocks(theme=gr.themes.Base()) as demo:
+
+    gr.ChatInterface(predict, title=title, description=description, css=css, examples=examples, additional_inputs=additional_inputs) 
+        
+demo.queue().launch(debug=True)
