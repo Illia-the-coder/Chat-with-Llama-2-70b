@@ -32,33 +32,12 @@ def predict(message, chatbot, system_prompt="", temperature=0.9, max_new_tokens=
     )
         
 
-additional_inputs=[
-    gr.Textbox("", label="Optional system prompt"),
-    gr.Slider(
-        label="Temperature",
-        value=0.9,
-        minimum=0.0,
-        maximum=1.0,
-        step=0.05,
-        interactive=True,
-        info="Higher values produce more diverse outputs",
-    ),
-    gr.Slider(
-        label="Max new tokens",
-        value=4096,
-        minimum=0,
-        maximum=4096,
-        step=64,
-        interactive=True,
-        info="The maximum numbers of new tokens",
-    )
-]
 
 
 
 # Gradio Demo 
 with gr.Blocks(theme=gr.themes.Base()) as demo:
 
-    gr.ChatInterface(predict, title=title, description=description, css=css, examples=examples, additional_inputs=additional_inputs) 
+    gr.ChatInterface(predict, title=title, description=description, css=css, examples=examples) 
         
 demo.queue().launch(debug=True)
