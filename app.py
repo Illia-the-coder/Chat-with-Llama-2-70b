@@ -1,7 +1,6 @@
 import gradio as gr
 from gradio_client import Client
 
-client = Client("https://ysharma-explore-llamav2-with-tgi.hf.space/")
 
 
 
@@ -21,6 +20,8 @@ examples=[
 
 # Stream text
 def predict(message, chatbot, system_prompt="", temperature=0.9, max_new_tokens=4096):
+    
+    client = Client("https://ysharma-explore-llamav2-with-tgi.hf.space/")
     return client.predict(
 			message,	# str in 'Message' Textbox component
             system_prompt,	# str in 'Optional system prompt' Textbox component
