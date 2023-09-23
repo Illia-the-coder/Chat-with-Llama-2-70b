@@ -1,13 +1,50 @@
----
-title: Chat With Llama 2 70b
-emoji: 🦙
-colorFrom: blue
-colorTo: purple
-sdk: gradio
-sdk_version: 3.44.3
-app_file: app.py
-pinned: false
-license: mit
----
 
-Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
+# Chat with Llama 2-70B
+
+Interact with the Llama 2-70B Chatbot using a simple and intuitive Gradio interface. This project provides a seamless way to communicate with the Llama 2-70B model, a state-of-the-art chatbot model with 70B parameters.
+
+![image](https://github.com/Illia-the-coder/Chat-with-Llama-2-70b/assets/101904816/0c691f86-da5f-4ba4-8521-1ddb06f3aa2d)
+
+
+## Features
+
+- User-friendly Gradio interface for chat.
+- Direct integration with the Llama 2-70B model hosted on Hugging Face.
+- Customizable parameters for chat predictions.
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Illia-the-coder/Chat-with-Llama-2-70b.git
+   ```
+
+2. Navigate to the project directory:
+   ```bash
+   cd Chat-with-Llama-2-70b
+   ```
+
+3. Install the required packages:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+## Usage
+
+Run the main script to launch the Gradio interface:
+```bash
+python app.py
+```
+
+## Demo
+
+For a live demo, visit [this link](https://github.com/Illia-the-coder/Chat-with-Llama-2-70b).
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
