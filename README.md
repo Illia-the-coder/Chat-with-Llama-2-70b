@@ -3,12 +3,13 @@
 
 Interact with the Llama 2-70B Chatbot using a simple and intuitive Gradio interface. This project provides a seamless way to communicate with the Llama 2-70B model, a state-of-the-art chatbot model with 70B parameters.
 
-<script
-	type="module"
-	src="https://gradio.s3-us-west-2.amazonaws.com/3.44.3/gradio.js"
-></script>
+<iframe
+	src="https://illia56-chat-with-llama-2-70b.hf.space"
+	frameborder="0"
+	width="850"
+	height="450"
+></iframe>
 
-<gradio-app src="https://illia56-chat-with-llama-2-70b.hf.space"></gradio-app>
 
 
 
